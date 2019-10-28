@@ -66,6 +66,12 @@ class DetailController: UIViewController {
     
     let shippingLabel = UILabel(text: "Recibilo gratis en tu casa!", font: UIFont.systemFont(ofSize: 16, weight: .medium), textColor: .meliGreen)
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        scrollView.contentSize = CGSize(width:self.view.bounds.width, height: self.view.bounds.height)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,9 +100,9 @@ class DetailController: UIViewController {
         
         let stackView = VerticalStackView(arrangedSubviews: [isNewLabel, titleLabel], spacing: 5)
         scrollView.addSubview(stackView)
-        let leftAnchor = self.view.safeAreaLayoutGuide.leftAnchor
-        let rightAnchor = self.view.safeAreaLayoutGuide.rightAnchor
-        stackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 15, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        let leftAnchor = self.scrollView.safeAreaLayoutGuide.leftAnchor
+        let rightAnchor = self.scrollView.safeAreaLayoutGuide.rightAnchor
+        stackView.anchor(top: scrollView.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 15, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         itemImage.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 15, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 180)
         
