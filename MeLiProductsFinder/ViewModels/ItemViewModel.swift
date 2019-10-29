@@ -38,6 +38,7 @@ class ItemViewModel {
         self.address = item.address?.city_name
         self.freeShipping = item.shipping?.free_shipping
         self.hasFreeShipping = item.shipping?.free_shipping == true ? "Envío Gratis" : ""
+    
     }
     
     func setupQuantityAttributedText() -> NSMutableAttributedString {
@@ -86,6 +87,25 @@ class ItemViewModel {
             attributedText.append(attachmentString)
             attributedText.append(textAfterIcon)
         } 
+        return attributedText
+    }
+    
+    func setupMercadoPagoAttributedText() -> NSMutableAttributedString {
+        
+        let imageOffsetY:CGFloat = -5.0
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "creditCard")?.withTintColor(.meliBlue)
+        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
+        
+        let  textAfterIcon = NSMutableAttributedString(string: "   Comprá con MercadoPago y sumá puntos!", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular),  NSAttributedString.Key.foregroundColor: UIColor.meliBlue])
+
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        let attributedText = NSMutableAttributedString(string: "")
+        
+        if acceptsMercadopago == true {
+            attributedText.append(attachmentString)
+            attributedText.append(textAfterIcon)
+        }
         return attributedText
     }
 }

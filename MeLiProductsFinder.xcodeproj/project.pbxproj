@@ -25,7 +25,7 @@
 		5640E6EE235FB80C00CB4F90 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5640E6ED235FB80C00CB4F90 /* SearchResultCell.swift */; };
 		5640E6F1235FB85400CB4F90 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5640E6F0235FB85400CB4F90 /* SearchResult.swift */; };
 		564ADE9A23664FE10067A0C2 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ADE9923664FE10067A0C2 /* ItemViewModel.swift */; };
-		56C3956A2363BD99002AA152 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C395692363BD99002AA152 /* ProgressHUD.swift */; };
+		568FC2142367D8100094B33A /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568FC2132367D8100094B33A /* UICollectionView.swift */; };
 		56EB4EA423647B2D004ADCBA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA323647B2D004ADCBA /* SearchController.swift */; };
 		56EB4EA623647D82004ADCBA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA523647D81004ADCBA /* CustomTextField.swift */; };
 		56EB4EA82364945B004ADCBA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA72364945B004ADCBA /* SearchViewModel.swift */; };
@@ -58,7 +58,7 @@
 		5640E6ED235FB80C00CB4F90 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		5640E6F0235FB85400CB4F90 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		564ADE9923664FE10067A0C2 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
-		56C395692363BD99002AA152 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		568FC2132367D8100094B33A /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		56EB4EA323647B2D004ADCBA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		56EB4EA523647D81004ADCBA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		56EB4EA72364945B004ADCBA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -178,11 +178,11 @@
 				56021B24235FE0F800ADED70 /* Components.swift */,
 				56021B26235FE4BA00ADED70 /* VerticalStackView.swift */,
 				56F611EA236278B200BF2772 /* CustomImageView.swift */,
-				56C395692363BD99002AA152 /* ProgressHUD.swift */,
 				56EB4EA523647D81004ADCBA /* CustomTextField.swift */,
 				5615A76623661E8100497E91 /* Numeric.swift */,
 				5615A76823661E8E00497E91 /* Formatter.swift */,
 				5615A76A2366349600497E91 /* UIViewController.swift */,
+				568FC2132367D8100094B33A /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,13 +264,13 @@
 				5615A76723661E8100497E91 /* Numeric.swift in Sources */,
 				56EB4EA423647B2D004ADCBA /* SearchController.swift in Sources */,
 				56EB4EA623647D82004ADCBA /* CustomTextField.swift in Sources */,
-				56C3956A2363BD99002AA152 /* ProgressHUD.swift in Sources */,
 				56021B1F235FC6F900ADED70 /* Service.swift in Sources */,
 				5621014E2363D5E100BF10E7 /* LoadingFooter.swift in Sources */,
 				5615A76923661E8E00497E91 /* Formatter.swift in Sources */,
 				56021B23235FE00100ADED70 /* UIView + Utils.swift in Sources */,
 				56F611EB236278B200BF2772 /* CustomImageView.swift in Sources */,
 				5640E6F1235FB85400CB4F90 /* SearchResult.swift in Sources */,
+				568FC2142367D8100094B33A /* UICollectionView.swift in Sources */,
 				5640E6EE235FB80C00CB4F90 /* SearchResultCell.swift in Sources */,
 				5615A76B2366349600497E91 /* UIViewController.swift in Sources */,
 				56021B21235FDD3D00ADED70 /* Logger.swift in Sources */,

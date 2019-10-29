@@ -26,14 +26,6 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
     private let searchBar = UISearchBar()
     private var timer: Timer?
     
-    private let enterSearchTermLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Please enter search term above..."
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView.collectionViewLayout.invalidateLayout()
     }
@@ -61,9 +53,6 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
         collectionView.register(ResultsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        
-        collectionView.addSubview(enterSearchTermLabel)
-        enterSearchTermLabel.fillSuperview(padding: .init(top: 100, left: 50, bottom: 0, right: 50))
 
     }
     
@@ -88,8 +77,9 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
         searchResultViewModel.onItemsFetched = { [unowned self] itemViewModel, resultAmount in
             self.itemViewModel = itemViewModel ?? []
             self.resultAmount = resultAmount ?? 0
-            
+
             DispatchQueue.main.async {
+                
                 self.searchTerm = self.searchBar.text
                 self.collectionView.reloadData()
             }
@@ -176,7 +166,6 @@ extension SearchResultsController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        enterSearchTermLabel.isHidden = itemViewModel.count != 0
         return itemViewModel.count
     }
     
@@ -212,8 +201,6 @@ extension SearchResultsController {
         let detailController = DetailController()
         
         detailController.itemViewModel = itemViewModel[indexPath.item]
-        // set id & pass w/ dependency injection constructor -> see if its possible to http request with item id
-        
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     
@@ -245,6 +232,10 @@ extension SearchResultsController {
 }
 
 extension SearchResultsController {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        self.collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)

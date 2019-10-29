@@ -120,7 +120,7 @@ class SearchController: UIViewController {
         let searchResultsController = SearchResultsController(searchTerm: self.searchTextField.text!)
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.backBarButtonItem?.tintColor = .meliBlack
-        self.navigationController?.pushViewController(searchResultsController, animated: true)
+         self.navigationController?.pushViewController(searchResultsController, animated: true)
     }
         
     override func viewWillLayoutSubviews() {

@@ -18,9 +18,9 @@ class LoadingFooter: UICollectionReusableView {
         activityIndicatiorView.color = .meliGrey
         activityIndicatiorView.startAnimating()
         
-        let label = UILabel(text: "Cargando resultados...", font: .systemFont(ofSize: 14))
+        let label = UILabel(text: "Cargando resultados...", font: .systemFont(ofSize: 14, weight: .medium))
         label.textAlignment = .center
-        
+        label.textColor = .meliDarkGrey
         let stackView = VerticalStackView(arrangedSubviews: [
             activityIndicatiorView, label ], spacing: 8)
         

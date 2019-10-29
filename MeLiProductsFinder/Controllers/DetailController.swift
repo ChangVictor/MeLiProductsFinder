@@ -20,22 +20,13 @@ class DetailController: UIViewController {
             stockLabel.text = itemViewModel.hasStock
             quantityLabel.attributedText = itemViewModel.setupQuantityAttributedText()
             installmentsLabel.attributedText = itemViewModel.setupInstallmentsAttributedText()
-
-            // sold_quantity
-            // accepts mercadopago
             shippingLabel.attributedText = itemViewModel.setupShippingAttributedText()
-
+            mercadoPagoLabel.attributedText = itemViewModel.setupMercadoPagoAttributedText()
         }
     }
     
     //MARK: - UIComponents
-    
-    let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.sizeToFit()
-        return scrollView
-    }()
-    
+
     let isNewLabel = UILabel(text: "newOrUsed", font: UIFont.systemFont(ofSize: 12, weight: .light), textColor: .meliGrey)
 
     let titleLabel = UILabel(text: "Item Name", font: UIFont.systemFont(ofSize: 18, weight: .medium), textColor: .meliBlack, numberOfLines: 0)
@@ -56,22 +47,48 @@ class DetailController: UIViewController {
         return view
     }()
     
-    let quantityLabel = UILabel(text: "Cantidad: 1", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlack)
+    let quantityLabel = UILabel(text: "QuantityLabel", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlack)
 
     let priceLabel = UILabel(text: "$ 00.00", font: UIFont.systemFont(ofSize: 30, weight: .medium), textColor: .meliBlack)
 
     let stockLabel = UILabel(text: "StockLabel", font: UIFont.systemFont(ofSize: 20, weight: .regular), textColor: .meliBlack)
     
-    let installmentsLabel = UILabel(text: "Pagalo en cuotas", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlack)
+    let installmentsLabel = UILabel(text: "Installments", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlack)
     
-    let shippingLabel = UILabel(text: "Recibilo gratis en tu casa!", font: UIFont.systemFont(ofSize: 16, weight: .medium), textColor: .meliGreen)
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        scrollView.contentSize = CGSize(width:self.view.bounds.width, height: self.view.bounds.height)
-
-    }
+    let shippingLabel = UILabel(text: "ShippingLabel", font: UIFont.systemFont(ofSize: 16, weight: .medium), textColor: .meliGreen)
+    
+    let mercadoPagoContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .meliBlueLight
+        view.layer.cornerRadius = 5
+        view.contentMode = .left
+        return view
+    }()
+    
+    let mercadoPagoLabel = UILabel(text: "FreeShipping", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlue)
+    
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    
+    //
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView(frame: .zero)
+        view.backgroundColor = .clear
+        view.frame = self.view.bounds
+        view.contentSize = contentViewSize
+        view.autoresizingMask = .flexibleHeight
+        view.showsHorizontalScrollIndicator = false
+        view.bounces = true
+        return view
+    }()
+    
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.frame.size = contentViewSize
+        return view
+    }()
+    
+// MARK: - Controller LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,27 +99,36 @@ class DetailController: UIViewController {
         setupConstraints()
        }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let height = self.view.bounds.height < 415 ? self.view.bounds.height + 150 : self.view.bounds.height - 150
+        scrollView.contentSize = CGSize(width:self.view.bounds.width, height: height)
+    }
+    
     fileprivate func setupViews() {
         view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
         scrollView.fillSuperview()
         scrollView.isScrollEnabled = true
         scrollView.isUserInteractionEnabled = true
 //        scrollView.delegate = self
-        scrollView.addSubview(itemImage)
-        scrollView.addSubview(quantityContainerView)
-        scrollView.addSubview(priceLabel)
-        scrollView.addSubview(stockLabel)
-        scrollView.addSubview(installmentsLabel)
-        scrollView.addSubview(shippingLabel)
+        containerView.addSubview(itemImage)
+        containerView.addSubview(quantityContainerView)
+        containerView.addSubview(priceLabel)
+        containerView.addSubview(stockLabel)
+        containerView.addSubview(installmentsLabel)
+        containerView.addSubview(shippingLabel)
+        containerView.addSubview(mercadoPagoLabel)
     }
     
     fileprivate func setupConstraints() {
         
         let stackView = VerticalStackView(arrangedSubviews: [isNewLabel, titleLabel], spacing: 5)
-        scrollView.addSubview(stackView)
-        let leftAnchor = self.scrollView.safeAreaLayoutGuide.leftAnchor
-        let rightAnchor = self.scrollView.safeAreaLayoutGuide.rightAnchor
-        stackView.anchor(top: scrollView.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 15, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        containerView.addSubview(stackView)
+        let leftAnchor = self.view.safeAreaLayoutGuide.leftAnchor
+        let rightAnchor = self.view.safeAreaLayoutGuide.rightAnchor
+        
+        stackView.anchor(top: containerView.safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 15, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         itemImage.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 15, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 180)
         
@@ -114,8 +140,9 @@ class DetailController: UIViewController {
         
         stockLabel.anchor(top: priceLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
-        installmentsLabel.anchor(top: stockLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
-        shippingLabel.anchor(top: installmentsLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        let paymentStackView = VerticalStackView(arrangedSubviews: [installmentsLabel, mercadoPagoLabel, shippingLabel], spacing: 15)
+        containerView.addSubview(paymentStackView)
+        paymentStackView.anchor(top: stockLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
     }
     
     fileprivate func setupInstallmentsAttributedText() {
