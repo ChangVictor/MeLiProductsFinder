@@ -28,39 +28,13 @@ class SearchResultCell: UICollectionViewCell {
         return imageView
     }()
 
-    let titleLabel: UILabel = {
-        
-        let label = UILabel()
-        label.text = "Item Name"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .meliBlack
-        label.numberOfLines = 5
-        return label
-    }()
+    let titleLabel = UILabel(text: "Item Name", font: UIFont.systemFont(ofSize: 16, weight: .medium), textColor: .meliBlack, numberOfLines: 5)
     
-    let priceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "$ 0.00"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.numberOfLines = 1
-        return label
-    }()
+    let priceLabel = UILabel(text: "$ 0.00", font: UIFont.systemFont(ofSize: 18, weight: .semibold), textColor: .meliBlack, numberOfLines: 1)
     
-    let isNewLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Usado"
-        label.textColor = .meliGrey
-        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        return label
-    }()
+    let isNewLabel = UILabel(text: "Condicion", font: UIFont.systemFont(ofSize: 12, weight: .light), textColor: .meliGrey)
     
-    let shippingLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Envio Gratis"
-        label.textColor = .meliGreen
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        return label
-    }()
+    let shippingLabel = UILabel(text: "Envio Gratis", font: UIFont.systemFont(ofSize: 12, weight: .regular), textColor: .meliGreen)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +44,7 @@ class SearchResultCell: UICollectionViewCell {
     }
     
     fileprivate func setupViews() {
+        
         imageView.constrainWidth(constant: 130)
         imageView.constrainHeight(constant: 130)
         let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [titleLabel, priceLabel, isNewLabel, shippingLabel], spacing: 5)])

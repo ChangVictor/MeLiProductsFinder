@@ -15,10 +15,9 @@ class Service {
     func fetchJSONData<T: Decodable>(urlString: URL, completion: @escaping (T?, Error?) -> ()) {
         
         URLSession.shared.dataTask(with: urlString) { (data, response, error) in
-            
             if let error = error {
                 completion(nil, error)
-                return
+                    return
             }
             do {
                 guard let data = data else { return }
@@ -33,7 +32,7 @@ class Service {
 
 extension Service {
     
-    func fetchItems(searchTerm: String, completion: @escaping (SearchResult?, Error?) -> () ) {
+    func fetchItems(searchTerm: String?, completion: @escaping (SearchResult?, Error?) -> () ) {
             
         var components = URLComponents()
             components.scheme = "https"
@@ -44,9 +43,8 @@ extension Service {
                 URLQueryItem(name: "offset", value: "0"),
                 URLQueryItem(name: "limit", value: "20")
             ]
-        
             guard let url = components.url else { return }
-            print(url)
+            Logger.print("Fetching items from: \(url)")
             fetchJSONData(urlString: url, completion: completion)
         }
 }

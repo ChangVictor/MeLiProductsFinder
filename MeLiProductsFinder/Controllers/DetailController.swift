@@ -12,16 +12,7 @@ class DetailController: UIViewController {
     
     var itemViewModel: ItemViewModel! {
         didSet {
-            titleLabel.text = itemViewModel.title
-            priceLabel.text = itemViewModel.price
-            isNewLabel.text = itemViewModel.condition
-            itemImage.loadImage(fromUrl: itemViewModel.thumbnail)
-//            setupQuantityAttributedText()
-            stockLabel.text = itemViewModel.hasStock
-            quantityLabel.attributedText = itemViewModel.setupQuantityAttributedText()
-            installmentsLabel.attributedText = itemViewModel.setupInstallmentsAttributedText()
-            shippingLabel.attributedText = itemViewModel.setupShippingAttributedText()
-            mercadoPagoLabel.attributedText = itemViewModel.setupMercadoPagoAttributedText()
+            setupModel()
         }
     }
     
@@ -31,7 +22,7 @@ class DetailController: UIViewController {
 
     let titleLabel = UILabel(text: "Item Name", font: UIFont.systemFont(ofSize: 18, weight: .medium), textColor: .meliBlack, numberOfLines: 0)
 
-   let itemImage: CustomImageView = {
+    let itemImage: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -56,14 +47,6 @@ class DetailController: UIViewController {
     let installmentsLabel = UILabel(text: "Installments", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlack)
     
     let shippingLabel = UILabel(text: "ShippingLabel", font: UIFont.systemFont(ofSize: 16, weight: .medium), textColor: .meliGreen)
-    
-    let mercadoPagoContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .meliBlueLight
-        view.layer.cornerRadius = 5
-        view.contentMode = .left
-        return view
-    }()
     
     let mercadoPagoLabel = UILabel(text: "FreeShipping", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .meliBlue)
     
@@ -101,21 +84,27 @@ class DetailController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let height = self.view.bounds.height < self.view.bounds.width ? self.view.bounds.height + 150 : self.view.bounds.height - 150
+        let height = self.view.bounds.height < self.view.bounds.width ? self.view.bounds.height + 220 : self.view.bounds.height
         scrollView.contentSize = CGSize(width:self.view.bounds.width, height: height)
     }
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        if UIDevice.current.orientation.isLandscape {
-//            scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
-//            print("Landscape")
-//        } else {
-//            print("Portrait")
-//            scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
-//        }
-//    }
+    // MARK: - Methods
+    
+    fileprivate func setupModel() {
+        
+        titleLabel.text = itemViewModel.title
+        priceLabel.text = itemViewModel.price
+        isNewLabel.text = itemViewModel.condition
+        itemImage.loadImage(fromUrl: itemViewModel.thumbnail)
+        stockLabel.text = itemViewModel.hasStock
+        quantityLabel.attributedText = itemViewModel.setupQuantityAttributedText()
+        installmentsLabel.attributedText = itemViewModel.setupInstallmentsAttributedText()
+        shippingLabel.attributedText = itemViewModel.setupShippingAttributedText()
+        mercadoPagoLabel.attributedText = itemViewModel.setupMercadoPagoAttributedText()
+    }
     
     fileprivate func setupViews() {
+        
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
         scrollView.fillSuperview()

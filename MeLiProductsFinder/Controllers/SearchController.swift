@@ -12,6 +12,8 @@ class SearchController: UIViewController {
     
     private var searchViewModel = SearchViewModel()
     
+    // MARK: - UIComponents
+    
     let searchButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Buscar", for: .normal)
@@ -53,10 +55,11 @@ class SearchController: UIViewController {
     
     private let gradientLayer = CAGradientLayer()
 
+    // MARK: - Controller Lifecycle
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        
     }
     
     override func viewDidLoad() {
@@ -66,9 +69,23 @@ class SearchController: UIViewController {
         setupViews()
         setupViewModel()
         setupNavigationBar()
-        setupKeyboardDismiss()
+        setupKeyboardDismissGesture()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        gradientLayer.frame = view.bounds
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        searchTextField.text = ""
+    }
+    
+    // MARK: - Methods
+
     fileprivate func setupViews() {
         
         view.addSubview(containerView)
@@ -83,7 +100,7 @@ class SearchController: UIViewController {
         searchTextField.delegate = self
     }
         
-    fileprivate func setupKeyboardDismiss() {
+    fileprivate func setupKeyboardDismissGesture() {
         
         let tapGestureReconizer = UITapGestureRecognizer(target: self, action: #selector(handleKeyboardDismiss))
         tapGestureReconizer.cancelsTouchesInView = false
@@ -123,16 +140,6 @@ class SearchController: UIViewController {
         self.navigationItem.backBarButtonItem?.tintColor = .meliBlack
         
         self.navigationController?.pushViewController(searchResultsController, animated: true)
-    }
-        
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        gradientLayer.frame = view.bounds
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchTextField.text = ""
     }
     
     fileprivate func setupGradientLayer() {

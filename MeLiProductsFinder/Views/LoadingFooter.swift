@@ -26,7 +26,6 @@ class LoadingFooter: UICollectionReusableView {
         
         addSubview(stackView)
         stackView.centerInSuperview(size: .init(width: 200, height: 0))
-        
     }
     
     required init?(coder: NSCoder) {

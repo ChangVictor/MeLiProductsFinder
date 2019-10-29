@@ -14,10 +14,10 @@ class CustomTextField: UITextField {
     let height: CGFloat
     
     init(padding: CGFloat, height: CGFloat) {
+        
         self.padding = padding
         self.height = height
         super.init(frame: .zero)
-    
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

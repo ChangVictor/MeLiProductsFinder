@@ -16,9 +16,10 @@ extension UICollectionView {
     }
     
     func scrollToTop(_ animated: Bool = false) {
+        
         let indexPath = IndexPath(row: 0, section: 0)
         if hasRowAtIndexPath(indexPath: indexPath) {
-                scrollToItem(at: indexPath, at: .top, animated: animated)
+            scrollToItem(at: indexPath, at: .top, animated: animated)
         }
     }
 }

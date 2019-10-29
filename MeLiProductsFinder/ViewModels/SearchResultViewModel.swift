@@ -10,7 +10,7 @@ import Foundation
 
 class SearchResultViewModel {
     
-    private var timer: Timer?
+    fileprivate var timer: Timer?
     fileprivate var resultQuantity = 0
     fileprivate var itemsResult = [ItemResult]()    
     fileprivate var itemViewModel = [ItemViewModel]()
@@ -27,17 +27,19 @@ class SearchResultViewModel {
     }
     
     func shouldTriggerSearch(_ searchTerm: String?) {
+        
         guard let isSearchEmpty = searchTerm?.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-        guard let searchCount = searchTerm?.count else { return }
+        guard let characterCount = searchTerm?.count else { return }
 
-        if !isSearchEmpty && searchCount >= 3 {
-            print("item fetching triggered : \(searchTerm ?? "")")
-            fetchItemsFromService(self.searchTerm!)
+        if !isSearchEmpty && characterCount >= 3 {
+            Logger.print("item fetching triggered: \(searchTerm ?? "")")
+            fetchItemsFromService(self.searchTerm ?? "")
         }
         self.onEmptySearchTerm?()
     }
     
     func fetchItemsFromService(_ searchTerm: String, completion: (() -> Void)? = nil) {
+        
         Service.shared.fetchItems(searchTerm: searchTerm) { (response, error) in
             if let error = error {
                 Logger.print("Failed to fetch items: ", error)
@@ -47,7 +49,10 @@ class SearchResultViewModel {
             
             self.resultQuantity = response?.paging?.total ?? 0
             self.itemViewModel = response?.results?.map({ return ItemViewModel(item: $0)}) ?? []
-            Logger.print(response as Any)
+            
+            guard let itemResponse = response?.results, let totalResults = response?.paging?.total else { return }
+            Logger.print("\(totalResults) items fetches:\n")
+            itemResponse.forEach{ Logger.print("\($0.title): @\($0.price)")}
             self.onItemsFetched?(self.itemViewModel, self.resultQuantity)
             completion?()
         }
@@ -56,13 +61,13 @@ class SearchResultViewModel {
     func paginateMoreItems(_ searchTerm: String, completion: (([ItemViewModel]?) -> Void)? = nil) {
         
         Service.shared.fetchItems(searchTerm: searchTerm) { (response, error) in
-                    if let error = error {
-                        Logger.print("Failed to fetch items: ", error)
-                        self.onFetchError?(error)
-                        return
-                    }
-                    completion?(self.itemViewModel)
+            if let error = error {
+                Logger.print("Failed to fetch items: ", error)
+                    self.onFetchError?(error)
+                    return
                 }
+                completion?(self.itemViewModel)
+        }
     }
 }
 

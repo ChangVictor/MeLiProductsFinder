@@ -8,9 +8,8 @@
 
 import UIKit
 
-class SearchResultsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class SearchResultsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private var resultAmount = 0
     private var itemViewModel = [ItemViewModel]()
     
     private let headerId = "headerId"
@@ -20,15 +19,15 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
     private var searchResultViewModel = SearchResultViewModel()
 
     private var searchTerm: String?
+    private var resultAmount = 0
     private var isPaginating: Bool = false
     private var isDonePaginating: Bool = false
     
     private let searchBar = UISearchBar()
     private var timer: Timer?
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
+    // MARK: - Controller's Lifecycle
+
     
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
@@ -43,57 +42,47 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
+        collectionView.register(ResultsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        
         setupNavigationStyle()
         setupSearchBar()
         setupLayout()
         setupViewModel()
         setupToolbar()
-        handleKeyboard()
-        
-        collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
-        collectionView.register(ResultsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-
+        setupKeyboardGestures()
     }
     
-    fileprivate func handleKeyboard() {
-        let tapGestureReconizer = UITapGestureRecognizer(target: self, action: #selector(handleKeyboardDismiss))
-        tapGestureReconizer.cancelsTouchesInView = false
-        collectionView.keyboardDismissMode = .onDrag
-        view.addGestureRecognizer(tapGestureReconizer)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    @objc fileprivate func handleKeyboardDismiss() {
-        view.endEditing(true)
-    }
+    // MARK: - Methods
 
     fileprivate func setupViewModel() {
         
         searchResultViewModel.isSearchTextFieldValid = { [unowned self] searchTerm in
-            
             self.searchResultViewModel.shouldTriggerSearch(searchTerm)
-        }
-        
+            }
         searchResultViewModel.onItemsFetched = { [unowned self] itemViewModel, resultAmount in
             self.itemViewModel = itemViewModel ?? []
             self.resultAmount = resultAmount ?? 0
-
             DispatchQueue.main.async {
-                
                 self.searchTerm = self.searchBar.text
                 self.collectionView.reloadData()
             }
         }
-        
-        searchResultViewModel.onFetchError = { [unowned self] error in
+        searchResultViewModel.onFetchError = { [weak self] error in
             if let error = error {
-                self.alertMessage(message: "Ocurrio un problema!\nPor favor vuelva a intentarlo mas tarde", title: "Oops!")
-                print(error)
+                self?.alertMessage(message: "Ocurrio un problema!\nPor favor vuelva a intentarlo mas tarde", title: "Oops!")
+                Logger.print(error)
             }
         }
     }
     
     fileprivate func setupLayout() {
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 1, left: 2, bottom: 1, right: 2)
         layout.minimumInteritemSpacing = 1
@@ -125,6 +114,18 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
         searchBar.searchTextField.backgroundColor = .meliWhite
         searchBar.placeholder = "Buscar en Mercado Libre"
         searchBar.text = self.searchTerm
+    }
+    
+    fileprivate func setupKeyboardGestures() {
+        
+        let tapGestureReconizer = UITapGestureRecognizer(target: self, action: #selector(handleKeyboardDismiss))
+        tapGestureReconizer.cancelsTouchesInView = false
+        collectionView.keyboardDismissMode = .onDrag
+        view.addGestureRecognizer(tapGestureReconizer)
+    }
+    
+    @objc fileprivate func handleKeyboardDismiss() {
+        view.endEditing(true)
     }
     
     fileprivate func setupToolbar() {
@@ -159,6 +160,8 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
     }
 }
 
+    // MARK: - Delegates & Datasource
+
 extension SearchResultsController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -166,26 +169,27 @@ extension SearchResultsController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return itemViewModel.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         let item = itemViewModel[indexPath.item]
         cell.itemViewModel = item
         
-//MARK: Pagination
+        //MARK: Pagination
         if indexPath.item == itemViewModel.count - 10 && !isPaginating {
-            print("fetching more items...")
+            Logger.print("Fetching more items...")
             isPaginating = true
             guard let searchTerm = self.searchTerm else { return cell }
-
             searchResultViewModel.paginateMoreItems(searchTerm) { [weak self] (itemViewModel) in
                 guard let itemCount = itemViewModel?.count else { return }
                 if itemCount == 0 {
                     self?.isDonePaginating = true
                 }
-                Logger.print("Fetching \(itemCount) more items")
+                Logger.print("\(itemCount) items fetched")
                 sleep(2)
                 self?.itemViewModel += itemViewModel ?? []
                 DispatchQueue.main.async {
@@ -194,44 +198,49 @@ extension SearchResultsController {
                 self?.isPaginating = false
             }
         }
+        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailController = DetailController()
         
+        let detailController = DetailController()
         detailController.itemViewModel = itemViewModel[indexPath.item]
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
+        
+      switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! ResultsHeader
-            
             headerView.resultsQuantity = self.resultAmount
-            
             return headerView
+        
         case UICollectionView.elementKindSectionFooter:
            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
            return footer
+        
         default:
             assert(false, "Unexpected element kind")
        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
         let height: CGFloat = self.resultAmount == 0 ? 0 : 50
         return .init(width: view.frame.width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
         let height: CGFloat = isDonePaginating ? 0 : 100
         return .init(width: view.frame.width, height: height)
     }
 }
 
-extension SearchResultsController {
+extension SearchResultsController: UISearchBarDelegate {
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         self.collectionView?.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
