@@ -35,13 +35,12 @@ extension Service {
     
     func fetchItems(searchTerm: String, completion: @escaping (SearchResult?, Error?) -> () ) {
             
-        let formatterSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
         var components = URLComponents()
             components.scheme = "https"
             components.host = "api.mercadolibre.com"
             components.path = "/sites/MLA/search"
             components.queryItems = [
-                URLQueryItem(name: "q", value: formatterSearchTerm),
+                URLQueryItem(name: "q", value: searchTerm),
                 URLQueryItem(name: "offset", value: "0"),
                 URLQueryItem(name: "limit", value: "20")
             ]

@@ -101,9 +101,19 @@ class DetailController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let height = self.view.bounds.height < 415 ? self.view.bounds.height + 150 : self.view.bounds.height - 150
+        let height = self.view.bounds.height < self.view.bounds.width ? self.view.bounds.height + 150 : self.view.bounds.height - 150
         scrollView.contentSize = CGSize(width:self.view.bounds.width, height: height)
     }
+    
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        if UIDevice.current.orientation.isLandscape {
+//            scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+//            print("Landscape")
+//        } else {
+//            print("Portrait")
+//            scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+//        }
+//    }
     
     fileprivate func setupViews() {
         view.addSubview(scrollView)
@@ -111,7 +121,6 @@ class DetailController: UIViewController {
         scrollView.fillSuperview()
         scrollView.isScrollEnabled = true
         scrollView.isUserInteractionEnabled = true
-//        scrollView.delegate = self
         containerView.addSubview(itemImage)
         containerView.addSubview(quantityContainerView)
         containerView.addSubview(priceLabel)
@@ -143,37 +152,5 @@ class DetailController: UIViewController {
         let paymentStackView = VerticalStackView(arrangedSubviews: [installmentsLabel, mercadoPagoLabel, shippingLabel], spacing: 15)
         containerView.addSubview(paymentStackView)
         paymentStackView.anchor(top: stockLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
-    }
-    
-    fileprivate func setupInstallmentsAttributedText() {
-        
-        let imageOffsetY:CGFloat = -5.0
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "creditCard")
-        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
-        let installmentString = itemViewModel.installments > 1 ? "hasta \(itemViewModel.installments) cuotas!" : "cuotas!"
-        let  textAfterIcon = NSMutableAttributedString(string: "  Pagá en \(installmentString)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),  NSAttributedString.Key.foregroundColor: UIColor.meliBlack])
-
-        let attachmentString = NSAttributedString(attachment: imageAttachment)
-        let attributedText = NSMutableAttributedString(string: "")
-        attributedText.append(attachmentString)
-        attributedText.append(textAfterIcon)
-        self.installmentsLabel.attributedText = attributedText
-    }
-    
-    fileprivate func setupShippingAttributedText() {
-        
-        let imageOffsetY:CGFloat = -5.0
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "deliveryTruck")
-        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
-        let installmentString = itemViewModel.installments > 1 ? "hasta \(itemViewModel.installments) cuotas!" : "cuotas!"
-        let  textAfterIcon = NSMutableAttributedString(string: "  Pagá en \(installmentString)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),  NSAttributedString.Key.foregroundColor: UIColor.meliBlack])
-
-        let attachmentString = NSAttributedString(attachment: imageAttachment)
-        let attributedText = NSMutableAttributedString(string: "")
-        attributedText.append(attachmentString)
-        attributedText.append(textAfterIcon)
-        self.installmentsLabel.attributedText = attributedText
     }
 }

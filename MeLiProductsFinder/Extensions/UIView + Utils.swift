@@ -53,7 +53,7 @@ extension UIView {
             leadingAnchor.constraint(equalTo: superviewLeadingAnchor, constant: padding.left).isActive = true
         }
         
-        if let superviewTrailingAnchor = superview?.safeAreaLayoutGuide.trailingAnchor {
+        if let superviewTrailingAnchor = superview?.trailingAnchor {
             trailingAnchor.constraint(equalTo: superviewTrailingAnchor, constant: -padding.right).isActive = true
         }
     }

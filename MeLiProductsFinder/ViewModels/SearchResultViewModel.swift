@@ -12,22 +12,21 @@ class SearchResultViewModel {
     
     private var timer: Timer?
     fileprivate var resultQuantity = 0
-    fileprivate var itemsResult = [ItemResult]()
-    
+    fileprivate var itemsResult = [ItemResult]()    
     fileprivate var itemViewModel = [ItemViewModel]()
-    
-    var isSearchTextFieldValid: (() -> Void)?
+
+    var isSearchTextFieldValid: ((String?) -> Void)?
     var onItemsFetched: (([ItemViewModel]?, Int?) -> Void)?
     var onFetchError: ((Error?) -> Void)?
     var onEmptySearchTerm: (() -> Void)?
     
     var searchTerm: String? {
         didSet {
-            isSearchTextFieldValid?()
+            isSearchTextFieldValid?(searchTerm)
         }
     }
     
-    func shouldTriggerSearch() {
+    func shouldTriggerSearch(_ searchTerm: String?) {
         guard let isSearchEmpty = searchTerm?.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         guard let searchCount = searchTerm?.count else { return }
 
@@ -66,3 +65,5 @@ class SearchResultViewModel {
                 }
     }
 }
+
+

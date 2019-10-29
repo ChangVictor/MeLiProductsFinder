@@ -117,15 +117,22 @@ class SearchController: UIViewController {
     @objc fileprivate func handleSearchButton() {
         
         view.endEditing(true)
-        let searchResultsController = SearchResultsController(searchTerm: self.searchTextField.text!)
+        let searchResultsController = SearchResultsController(searchTerm: searchViewModel.searchTerm ?? "")
+        searchViewModel.searchTerm = ""
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.backBarButtonItem?.tintColor = .meliBlack
-         self.navigationController?.pushViewController(searchResultsController, animated: true)
+        
+        self.navigationController?.pushViewController(searchResultsController, animated: true)
     }
         
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         gradientLayer.frame = view.bounds
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchTextField.text = ""
     }
     
     fileprivate func setupGradientLayer() {

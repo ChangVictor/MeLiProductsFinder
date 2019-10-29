@@ -69,9 +69,9 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
 
     fileprivate func setupViewModel() {
         
-        searchResultViewModel.isSearchTextFieldValid = { [unowned self] in
+        searchResultViewModel.isSearchTextFieldValid = { [unowned self] searchTerm in
             
-            self.searchResultViewModel.shouldTriggerSearch()
+            self.searchResultViewModel.shouldTriggerSearch(searchTerm)
         }
         
         searchResultViewModel.onItemsFetched = { [unowned self] itemViewModel, resultAmount in
@@ -181,12 +181,12 @@ extension SearchResultsController {
             guard let searchTerm = self.searchTerm else { return cell }
 
             searchResultViewModel.paginateMoreItems(searchTerm) { [weak self] (itemViewModel) in
-                if itemViewModel?.count == 0 {
+                guard let itemCount = itemViewModel?.count else { return }
+                if itemCount == 0 {
                     self?.isDonePaginating = true
                 }
-                Logger.print(itemViewModel?.count as Any)
+                Logger.print("Fetching \(itemCount) more items")
                 sleep(2)
-            
                 self?.itemViewModel += itemViewModel ?? []
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
@@ -252,6 +252,10 @@ extension SearchResultsController {
         if !collectionView.isDecelerating {
             view.endEditing(true)
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
