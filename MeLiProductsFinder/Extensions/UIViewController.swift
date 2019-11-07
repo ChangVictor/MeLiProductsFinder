@@ -13,9 +13,11 @@ extension UIViewController {
     func alertMessage(message: String, title: String = "") {
     
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
         alertController.addAction(OKAction)
-    
         self.present(alertController, animated: true, completion: nil)
     }
+    
 }

@@ -75,8 +75,10 @@ class SearchResultsController: UICollectionViewController, UICollectionViewDeleg
         }
         searchResultViewModel.onFetchError = { [weak self] error in
             if let error = error {
-                self?.alertMessage(message: "Ocurrio un problema!\nPor favor vuelva a intentarlo mas tarde", title: "Oops!")
-                Logger.print(error)
+                DispatchQueue.main.async {
+                    self?.alertMessage(message: "Ocurrio un problema!\nPor favor vuelva a intentarlo mas tarde", title: "Oops!")
+                    Logger.print(error)
+                }
             }
         }
     }
