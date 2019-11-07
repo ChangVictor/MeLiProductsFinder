@@ -12,7 +12,7 @@ class SearchResultViewModel {
     
     fileprivate var timer: Timer?
     fileprivate var resultQuantity = 0
-    fileprivate var itemsResult = [ItemResult]()    
+    fileprivate var itemsResult = [ItemResult]()
     fileprivate var itemViewModel = [ItemViewModel]()
 
     var isSearchTextFieldValid: ((String?) -> Void)?

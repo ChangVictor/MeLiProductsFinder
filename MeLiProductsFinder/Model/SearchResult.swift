@@ -12,4 +12,8 @@ struct SearchResult: Decodable {
     
     let paging: Paging?
     let results: [ItemResult]?
+    
+    func get() -> [ItemResult]? {
+        return results!
+    }
 }

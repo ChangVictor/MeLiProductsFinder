@@ -19,9 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else {
             return }
-//        let layout = UICollectionViewFlowLayout()
-//        let searchController = SearchResultsController(collectionViewLayout: layout)
-//        let navigationController = UINavigationController(rootViewController: searchController)
 
         let searchController = SearchController()
         let navigationController = UINavigationController(rootViewController: searchController)
