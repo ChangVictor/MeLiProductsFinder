@@ -10,16 +10,19 @@ import XCTest
 @testable import MeLiProductsFinder
 
 var sut: URLSession!
+var service: Service!
 
 class MeLiProductsFinderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
         sut = URLSession(configuration: .default)
+        service = Service()
     }
 
     override func tearDown() {
         sut = nil
+        service = nil
         super.tearDown()
     }
 
@@ -45,22 +48,24 @@ class MeLiProductsFinderTests: XCTestCase {
         wait(for: [promise], timeout: 5)
     }
     
-    func testCallToServiceCompletion() {
+    func testServiceSearchDidCompleteWithResult() {
         
-        let url = URL(string: "https://api.mercadolibre.com/sites/MLA/search?q=IPad%20Pro%20&offset=0&limit=20")
-
-        let promise = expectation(description: "Completion handler called")
-        var statusCode: Int?
+        let didFinish = self.expectation(description: "Completion handler called")
+        var result: SearchResult?
         var responseError: Error?
-        let dataTask = sut.dataTask(with: url!) { (data, response, error) in
-          statusCode = (response as? HTTPURLResponse)?.statusCode
-          responseError = error
-          promise.fulfill()
+        service.fetchItems(searchTerm: "iPhone") { response, error in
+            
+            if let error = error {
+                Logger.print(error.localizedDescription)
+            }
+            responseError = error
+            result = response
+            didFinish.fulfill()
         }
-        dataTask.resume()
-        wait(for: [promise], timeout: 5)
+        
+        wait(for: [didFinish], timeout: 5)
         XCTAssertNil(responseError)
-        XCTAssertEqual(statusCode, 200)
+        XCTAssertNotNil(result)
     }
     
 }
