@@ -46,13 +46,12 @@ class MeLiProductsFinderTests: XCTestCase {
     }
     
     func testCallToServiceCompletion() {
-        // given
+        
         let url = URL(string: "https://api.mercadolibre.com/sites/MLA/search?q=IPad%20Pro%20&offset=0&limit=20")
 
         let promise = expectation(description: "Completion handler called")
         var statusCode: Int?
         var responseError: Error?
-        // when
         let dataTask = sut.dataTask(with: url!) { (data, response, error) in
           statusCode = (response as? HTTPURLResponse)?.statusCode
           responseError = error
@@ -60,9 +59,8 @@ class MeLiProductsFinderTests: XCTestCase {
         }
         dataTask.resume()
         wait(for: [promise], timeout: 5)
-        // then
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
     }
-
+    
 }

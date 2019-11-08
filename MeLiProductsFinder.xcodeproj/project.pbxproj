@@ -27,8 +27,7 @@
 		564ADE9A23664FE10067A0C2 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ADE9923664FE10067A0C2 /* ItemViewModel.swift */; };
 		568FC2142367D8100094B33A /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568FC2132367D8100094B33A /* UICollectionView.swift */; };
 		5691988323744D8100D9DB5B /* MeLiProductsFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5691988223744D8100D9DB5B /* MeLiProductsFinderTests.swift */; };
-		569198A323748BE000D9DB5B /* MeLiProductsFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569198A223748BE000D9DB5B /* MeLiProductsFinderUITests.swift */; };
-		569198B12374923C00D9DB5B /* MeLiProductsSearcgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569198B02374923C00D9DB5B /* MeLiProductsSearcgTests.swift */; };
+		5692ADD92375B6A000D62020 /* MeLiProductsFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5692ADD82375B6A000D62020 /* MeLiProductsFinderUITests.swift */; };
 		56EB4EA423647B2D004ADCBA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA323647B2D004ADCBA /* SearchController.swift */; };
 		56EB4EA623647D82004ADCBA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA523647D81004ADCBA /* CustomTextField.swift */; };
 		56EB4EA82364945B004ADCBA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EB4EA72364945B004ADCBA /* SearchViewModel.swift */; };
@@ -50,14 +49,7 @@
 			remoteGlobalIDString = 56F11B3C235E65C200369A6D;
 			remoteInfo = MeLiProductsFinder;
 		};
-		569198A523748BE000D9DB5B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56F11B35235E65C200369A6D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56F11B3C235E65C200369A6D;
-			remoteInfo = MeLiProductsFinder;
-		};
-		569198B32374923C00D9DB5B /* PBXContainerItemProxy */ = {
+		5692ADD22375B66100D62020 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56F11B35235E65C200369A6D /* Project object */;
 			proxyType = 1;
@@ -89,12 +81,9 @@
 		5691988023744D8100D9DB5B /* MeLiProductsFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeLiProductsFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5691988223744D8100D9DB5B /* MeLiProductsFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeLiProductsFinderTests.swift; sourceTree = "<group>"; };
 		5691988423744D8100D9DB5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		569198A023748BE000D9DB5B /* MeLiProductsFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeLiProductsFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		569198A223748BE000D9DB5B /* MeLiProductsFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeLiProductsFinderUITests.swift; sourceTree = "<group>"; };
-		569198A423748BE000D9DB5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		569198AE2374923C00D9DB5B /* MeLiProductsSearcgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeLiProductsSearcgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		569198B02374923C00D9DB5B /* MeLiProductsSearcgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeLiProductsSearcgTests.swift; sourceTree = "<group>"; };
-		569198B22374923C00D9DB5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5692ADCD2375B66100D62020 /* MeLiProductsFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeLiProductsFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5692ADD12375B66100D62020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5692ADD82375B6A000D62020 /* MeLiProductsFinderUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeLiProductsFinderUITests.swift; sourceTree = "<group>"; };
 		56EB4EA323647B2D004ADCBA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		56EB4EA523647D81004ADCBA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		56EB4EA72364945B004ADCBA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -118,14 +107,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5691989D23748BE000D9DB5B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		569198AB2374923C00D9DB5B /* Frameworks */ = {
+		5692ADCA2375B66100D62020 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,22 +163,13 @@
 			path = MeLiProductsFinderTests;
 			sourceTree = "<group>";
 		};
-		569198A123748BE000D9DB5B /* MeLiProductsFinderUITests */ = {
+		5692ADCE2375B66100D62020 /* MeLiProductsFinderUITests */ = {
 			isa = PBXGroup;
 			children = (
-				569198A223748BE000D9DB5B /* MeLiProductsFinderUITests.swift */,
-				569198A423748BE000D9DB5B /* Info.plist */,
+				5692ADD82375B6A000D62020 /* MeLiProductsFinderUITests.swift */,
+				5692ADD12375B66100D62020 /* Info.plist */,
 			);
 			path = MeLiProductsFinderUITests;
-			sourceTree = "<group>";
-		};
-		569198AF2374923C00D9DB5B /* MeLiProductsSearcgTests */ = {
-			isa = PBXGroup;
-			children = (
-				569198B02374923C00D9DB5B /* MeLiProductsSearcgTests.swift */,
-				569198B22374923C00D9DB5B /* Info.plist */,
-			);
-			path = MeLiProductsSearcgTests;
 			sourceTree = "<group>";
 		};
 		56EB4EAB2364D71A004ADCBA /* ViewModels */ = {
@@ -214,8 +187,7 @@
 			children = (
 				56F11B3F235E65C200369A6D /* MeLiProductsFinder */,
 				5691988123744D8100D9DB5B /* MeLiProductsFinderTests */,
-				569198A123748BE000D9DB5B /* MeLiProductsFinderUITests */,
-				569198AF2374923C00D9DB5B /* MeLiProductsSearcgTests */,
+				5692ADCE2375B66100D62020 /* MeLiProductsFinderUITests */,
 				56F11B3E235E65C200369A6D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -225,8 +197,7 @@
 			children = (
 				56F11B3D235E65C200369A6D /* MeLiProductsFinder.app */,
 				5691988023744D8100D9DB5B /* MeLiProductsFinderTests.xctest */,
-				569198A023748BE000D9DB5B /* MeLiProductsFinderUITests.xctest */,
-				569198AE2374923C00D9DB5B /* MeLiProductsSearcgTests.xctest */,
+				5692ADCD2375B66100D62020 /* MeLiProductsFinderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,41 +269,23 @@
 			productReference = 5691988023744D8100D9DB5B /* MeLiProductsFinderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5691989F23748BE000D9DB5B /* MeLiProductsFinderUITests */ = {
+		5692ADCC2375B66100D62020 /* MeLiProductsFinderUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 569198A723748BE000D9DB5B /* Build configuration list for PBXNativeTarget "MeLiProductsFinderUITests" */;
+			buildConfigurationList = 5692ADD42375B66100D62020 /* Build configuration list for PBXNativeTarget "MeLiProductsFinderUITests" */;
 			buildPhases = (
-				5691989C23748BE000D9DB5B /* Sources */,
-				5691989D23748BE000D9DB5B /* Frameworks */,
-				5691989E23748BE000D9DB5B /* Resources */,
+				5692ADC92375B66100D62020 /* Sources */,
+				5692ADCA2375B66100D62020 /* Frameworks */,
+				5692ADCB2375B66100D62020 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				569198A623748BE000D9DB5B /* PBXTargetDependency */,
+				5692ADD32375B66100D62020 /* PBXTargetDependency */,
 			);
 			name = MeLiProductsFinderUITests;
 			productName = MeLiProductsFinderUITests;
-			productReference = 569198A023748BE000D9DB5B /* MeLiProductsFinderUITests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		569198AD2374923C00D9DB5B /* MeLiProductsSearcgTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 569198B52374923C00D9DB5B /* Build configuration list for PBXNativeTarget "MeLiProductsSearcgTests" */;
-			buildPhases = (
-				569198AA2374923C00D9DB5B /* Sources */,
-				569198AB2374923C00D9DB5B /* Frameworks */,
-				569198AC2374923C00D9DB5B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				569198B42374923C00D9DB5B /* PBXTargetDependency */,
-			);
-			name = MeLiProductsSearcgTests;
-			productName = MeLiProductsSearcgTests;
-			productReference = 569198AE2374923C00D9DB5B /* MeLiProductsSearcgTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			productReference = 5692ADCD2375B66100D62020 /* MeLiProductsFinderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		56F11B3C235E65C200369A6D /* MeLiProductsFinder */ = {
 			isa = PBXNativeTarget;
@@ -365,11 +318,7 @@
 						CreatedOnToolsVersion = 11.1;
 						TestTargetID = 56F11B3C235E65C200369A6D;
 					};
-					5691989F23748BE000D9DB5B = {
-						CreatedOnToolsVersion = 11.1;
-						TestTargetID = 56F11B3C235E65C200369A6D;
-					};
-					569198AD2374923C00D9DB5B = {
+					5692ADCC2375B66100D62020 = {
 						CreatedOnToolsVersion = 11.1;
 						TestTargetID = 56F11B3C235E65C200369A6D;
 					};
@@ -393,8 +342,7 @@
 			targets = (
 				56F11B3C235E65C200369A6D /* MeLiProductsFinder */,
 				5691987F23744D8100D9DB5B /* MeLiProductsFinderTests */,
-				5691989F23748BE000D9DB5B /* MeLiProductsFinderUITests */,
-				569198AD2374923C00D9DB5B /* MeLiProductsSearcgTests */,
+				5692ADCC2375B66100D62020 /* MeLiProductsFinderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -407,14 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5691989E23748BE000D9DB5B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		569198AC2374923C00D9DB5B /* Resources */ = {
+		5692ADCB2375B66100D62020 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -441,19 +382,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5691989C23748BE000D9DB5B /* Sources */ = {
+		5692ADC92375B66100D62020 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569198A323748BE000D9DB5B /* MeLiProductsFinderUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		569198AA2374923C00D9DB5B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				569198B12374923C00D9DB5B /* MeLiProductsSearcgTests.swift in Sources */,
+				5692ADD92375B6A000D62020 /* MeLiProductsFinderUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,15 +433,10 @@
 			target = 56F11B3C235E65C200369A6D /* MeLiProductsFinder */;
 			targetProxy = 5691988523744D8100D9DB5B /* PBXContainerItemProxy */;
 		};
-		569198A623748BE000D9DB5B /* PBXTargetDependency */ = {
+		5692ADD32375B66100D62020 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 56F11B3C235E65C200369A6D /* MeLiProductsFinder */;
-			targetProxy = 569198A523748BE000D9DB5B /* PBXContainerItemProxy */;
-		};
-		569198B42374923C00D9DB5B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 56F11B3C235E65C200369A6D /* MeLiProductsFinder */;
-			targetProxy = 569198B32374923C00D9DB5B /* PBXContainerItemProxy */;
+			targetProxy = 5692ADD22375B66100D62020 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -564,10 +492,9 @@
 			};
 			name = Release;
 		};
-		569198A823748BE000D9DB5B /* Debug */ = {
+		5692ADD52375B66100D62020 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XDGVKMUQS5;
 				INFOPLIST_FILE = MeLiProductsFinderUITests/Info.plist;
@@ -578,16 +505,16 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.victorChang.-MeLiProductsFinderTests.MeLiProductsFinderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeLiProductsFinder.app/MeLiProductsFinder";
+				TEST_TARGET_NAME = MeLiProductsFinder;
 			};
 			name = Debug;
 		};
-		569198A923748BE000D9DB5B /* Release */ = {
+		5692ADD62375B66100D62020 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XDGVKMUQS5;
 				INFOPLIST_FILE = MeLiProductsFinderUITests/Info.plist;
@@ -598,49 +525,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.victorChang.-MeLiProductsFinderTests.MeLiProductsFinderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeLiProductsFinder.app/MeLiProductsFinder";
-			};
-			name = Release;
-		};
-		569198B62374923C00D9DB5B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XDGVKMUQS5;
-				INFOPLIST_FILE = MeLiProductsSearcgTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.victorChang.-MeLiProductsFinderTests.MeLiProductsSearcgTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeLiProductsFinder.app/MeLiProductsFinder";
-			};
-			name = Debug;
-		};
-		569198B72374923C00D9DB5B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XDGVKMUQS5;
-				INFOPLIST_FILE = MeLiProductsSearcgTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.victorChang.-MeLiProductsFinderTests.MeLiProductsSearcgTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeLiProductsFinder.app/MeLiProductsFinder";
+				TEST_TARGET_NAME = MeLiProductsFinder;
 			};
 			name = Release;
 		};
@@ -806,20 +694,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		569198A723748BE000D9DB5B /* Build configuration list for PBXNativeTarget "MeLiProductsFinderUITests" */ = {
+		5692ADD42375B66100D62020 /* Build configuration list for PBXNativeTarget "MeLiProductsFinderUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				569198A823748BE000D9DB5B /* Debug */,
-				569198A923748BE000D9DB5B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		569198B52374923C00D9DB5B /* Build configuration list for PBXNativeTarget "MeLiProductsSearcgTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				569198B62374923C00D9DB5B /* Debug */,
-				569198B72374923C00D9DB5B /* Release */,
+				5692ADD52375B66100D62020 /* Debug */,
+				5692ADD62375B66100D62020 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,7 +18,7 @@ class SearchViewModel {
         }
     }
     
-    private func checkTextFieldValidity() {
+    func checkTextFieldValidity() {
         
         let isValid = searchTerm?.trimmingCharacters(in: .whitespaces).isEmpty == false
         self.isValid?(isValid)
